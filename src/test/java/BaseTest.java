@@ -27,11 +27,11 @@ public class BaseTest {
             javascriptExecutor.executeScript("window.sessionStorage.clear()");
         }
     }
-
+/*
     @AfterSuite (alwaysRun = true)
     public void close() {
         if (HOLD_BROWSER_OPEN) {
             driver.quit();
         }
-    }
+    }*/
 }

@@ -10,7 +10,7 @@ public class TelevisionPage extends BasePage {
     private  final By priceBeforeField = By.xpath("//*[@id=\"schema-filter\"]/div[5]/div[4]/div[2]/div/div[2]/input");
     private  final By optionDiagonalFrom = By.xpath("//div[@class = 'schema-filter__label']/span[contains(text(), 'Диагональ')]/../following-sibling::div//select[contains(@data-bind, 'value: facet.value.from')]//option[contains(@value, '400')]");
     private  final By optionDiagonalTo = By.xpath("//div[@class = 'schema-filter__label']/span[contains(text(), 'Диагональ')]/../following-sibling::div//select[contains(@data-bind, 'value: facet.value.to')]//option[contains(@value, '500')]");
-    private  final By displayResolution = By.xpath("//*[@id=\"schema-filter\"]/div[5]/div[10]/div[3]/ul/li[3]/label/span[1]/span");
+    private  final By displayResolution = By.xpath("//*[@id=\"schema-filter\"]/div[5]/div[11]/div[3]/ul/li[3]/label/span[1]/span");
 
 
     public TelevisionPage(WebDriver driver) {

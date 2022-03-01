@@ -3,7 +3,6 @@ package common;
 public class Config {
 
     public static final String PLATFORM_AND_BROWSER = "windows_chrome";
-    public static final String NAVBAR = "Каталог";
 
     /**
      * Clear browser cookies after each iteration

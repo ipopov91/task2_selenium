@@ -1,6 +1,5 @@
 import common.ConfProperties;
 import org.testng.annotations.Test;
-import pages.main.MainPage;
 
 public class SearchTelevisionTest extends BaseTest {
 
