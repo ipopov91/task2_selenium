@@ -1,4 +1,5 @@
 import common.ConfProperties;
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.Test;
 
 public class SearchTelevisionTest extends BaseTest {
@@ -14,6 +15,11 @@ public class SearchTelevisionTest extends BaseTest {
                 .navigateSubMenu()
                 .navigateTelevisionList();
 
-        televisionPage.searchTelevision();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("javascript:window.scrollBy(250,350)");
+
+        televisionPage
+                .searchTelevision()
+                .tvList();
     }
 }

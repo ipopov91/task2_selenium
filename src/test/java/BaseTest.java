@@ -22,9 +22,9 @@ public class BaseTest {
     @AfterTest
     public void clearCookiesAndLocalStorage() {
         if (CLEAR_COOKIES_AND_STORAGE) {
-            JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+            JavascriptExecutor js = (JavascriptExecutor) driver;
             driver.manage().deleteAllCookies();
-            javascriptExecutor.executeScript("window.sessionStorage.clear()");
+            js.executeScript("window.sessionStorage.clear()");
         }
     }
 /*
