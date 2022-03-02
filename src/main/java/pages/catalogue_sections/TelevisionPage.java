@@ -2,7 +2,6 @@ package pages.catalogue_sections;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import pages.base.BasePage;
 
 public class TelevisionPage extends BasePage {
