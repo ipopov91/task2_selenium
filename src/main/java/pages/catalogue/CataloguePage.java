@@ -1,7 +1,10 @@
 package pages.catalogue;
 
+import common.ConfProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import pages.base.BasePage;
 
 public class CataloguePage extends BasePage {
@@ -26,6 +29,7 @@ public class CataloguePage extends BasePage {
 
     public CataloguePage navigateTelevisionList() {
         driver.findElement(televisionsBtn).click();
+        Assert.assertEquals((driver.getCurrentUrl()), ConfProperties.getProperty("televisionpage"));
         return this;
     }
 }

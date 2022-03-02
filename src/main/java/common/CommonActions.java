@@ -15,7 +15,7 @@ public class CommonActions {
 
         switch (PLATFORM_AND_BROWSER) {
             case "windows_chrome":
-                System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", ConfProperties.getProperty("chrome"));
                 driver = new ChromeDriver();
                 break;
             default:
@@ -25,4 +25,6 @@ public class CommonActions {
         driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
         return driver;
     }
+
+
 }

@@ -1,6 +1,8 @@
 package pages.base;
 
+import common.ConfProperties;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 public class BasePage {
     protected WebDriver driver;
@@ -10,6 +12,6 @@ public class BasePage {
 
     public void open(String url) {
         driver.get(url);
+        Assert.assertEquals((driver.getCurrentUrl()), ConfProperties.getProperty("homepage"));
     }
-
 }

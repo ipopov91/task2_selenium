@@ -19,7 +19,6 @@ public class SearchTelevisionTest extends BaseTest {
         js.executeScript("javascript:window.scrollBy(250,350)");
 
         televisionPage
-                .searchTelevision()
-                .tvList();
+                .searchTelevision();
     }
 }

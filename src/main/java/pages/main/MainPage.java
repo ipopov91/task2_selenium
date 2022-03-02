@@ -1,7 +1,9 @@
 package pages.main;
 
+import common.ConfProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pages.base.BasePage;
 
 
@@ -15,6 +17,7 @@ public class MainPage extends BasePage {
 
     public MainPage navigateSection() {
         driver.findElement(catalogueBtn).click();
+        Assert.assertEquals((driver.getCurrentUrl()), ConfProperties.getProperty("cataloguepage"));
             return this;
     }
 }
