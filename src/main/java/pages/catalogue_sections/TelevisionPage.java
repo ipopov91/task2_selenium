@@ -7,7 +7,7 @@ import pages.base.BasePage;
 
 public class TelevisionPage extends BasePage {
 
-    private final By samsungManufacturerBtn = By.xpath("//*[@id=\"schema-filter\"]/div[5]/div[3]/div[2]/ul/li[2]/label/span[1]");
+    private final By samsungManufacturerBtn = By.xpath("//span[contains(text(), 'Производитель')]/../following-sibling::div/ul/li/label/span[@class='i-checkbox']/input[@value='samsung']/..");
     private  final By priceBeforeField = By.xpath("//input[ @placeholder='до']");
     private  final By optionDiagonalFrom = By.xpath("//div[@class = 'schema-filter__label']/span[contains(text(), 'Диагональ')]/../following-sibling::div//select[contains(@data-bind, 'value: facet.value.from')]//option[contains(@value, '400')]");
     private  final By optionDiagonalTo = By.xpath("//div[@class = 'schema-filter__label']/span[contains(text(), 'Диагональ')]/../following-sibling::div//select[contains(@data-bind, 'value: facet.value.to')]//option[contains(@value, '500')]");

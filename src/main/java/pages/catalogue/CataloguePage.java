@@ -9,27 +9,36 @@ import pages.base.BasePage;
 
 public class CataloguePage extends BasePage {
 
-    private final By electronicsBtn = By.xpath("//span[contains(text(), 'Электроника')]");
-    private final By televisionsAndVideoBtn = By.xpath("//div[contains(text(), 'Телевидение')]");
-    private final By televisionsBtn = By.xpath("//div[@class='catalog-navigation-list__dropdown-list']//a[@href='https://catalog.onliner.by/tv']");
+    private static final By electronicsBtn = By.xpath("//span[contains(text(), 'Электроника')]");
+    private static final By televisionsAndVideoBtn = By.xpath("//div[contains(text(), 'Телевидение')]");
+    private static final By televisionsBtn = By.xpath("//div[@class='catalog-navigation-list__dropdown-list']//a[@href='https://catalog.onliner.by/tv']");
 
     public CataloguePage(WebDriver driver) {
         super(driver);
     }
 
-    public CataloguePage navigateMenu() {
-        driver.findElement(electronicsBtn).click();
-        return this;
+    public static void navigateMenu(String str) {
+        switch (str) {
+            case "Электроника":
+                driver.findElement(electronicsBtn).click();
+                break;
+        }
     }
 
-    public CataloguePage navigateSubMenu() {
-        driver.findElement(televisionsAndVideoBtn).click();
-        return this;
+    public static void navigateSubMenu(String str) {
+        switch (str) {
+            case "Телевидение и видео":
+                driver.findElement(televisionsAndVideoBtn).click();
+                break;
+        }
     }
 
-    public CataloguePage navigateTelevisionList() {
-        driver.findElement(televisionsBtn).click();
-        Assert.assertEquals((driver.getCurrentUrl()), ConfProperties.getProperty("televisionpage"));
-        return this;
+    public static void navigateTelevisionList(String str) {
+        switch (str) {
+            case "Телевизоры":
+            driver.findElement(televisionsBtn).click();
+            Assert.assertEquals((driver.getCurrentUrl()), ConfProperties.getProperty("televisionpage"));
+        }
+
     }
 }
