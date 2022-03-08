@@ -1,13 +1,16 @@
 import common.ConfProperties;
 import org.openqa.selenium.JavascriptExecutor;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.catalogue.CataloguePage;
+import pages.catalogue_sections.TelevisionPage;
 import pages.main.MainPage;
 
 public class SearchTelevisionTest extends BaseTest {
 
+    @Parameters({"manufacturer", "priceTo", "resolution", "diagonalFrom", "diagonalTo"})
     @Test
-    public void checkIsRedirectToList() {
+    public void checkIsRedirectToList(String manufacturer, String priceTo, String resolution, String diagonalFrom, String diagonalTo) {
         basePage.open(ConfProperties.getProperty("homepage"));
 
         MainPage.navigateSection("Каталог");
@@ -19,6 +22,10 @@ public class SearchTelevisionTest extends BaseTest {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("javascript:window.scrollBy(250,350)");
 
-        televisionPage.searchTelevision();
+        TelevisionPage.chooseManufacturer(manufacturer);
+        TelevisionPage.choosePriceTo(priceTo);
+        TelevisionPage.chooseResolution(resolution);
+        TelevisionPage.chooseDiagonalFrom(diagonalFrom);
+        TelevisionPage.chooseDiagonalTo(diagonalTo);
     }
 }
