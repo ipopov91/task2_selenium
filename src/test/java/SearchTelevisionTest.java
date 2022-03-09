@@ -21,7 +21,7 @@ public class SearchTelevisionTest extends BaseTest {
         CataloguePage.navigateTelevisionList("Телевизоры");
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("javascript:window.scrollBy(250,350)");
+        js.executeScript("javascript:window.scrollBy(250,400)");
 
         TelevisionPage.chooseManufacturer(manufacturer);
         TelevisionPage.choosePriceTo(priceTo);

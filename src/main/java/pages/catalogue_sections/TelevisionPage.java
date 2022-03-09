@@ -37,7 +37,7 @@ public class TelevisionPage extends BasePage {
 
     public static void chooseResolution(String resolution) {
         switch (resolution) {
-            case "1920х1080 (Full HD)":
+            case "1920x1080 (Full HD)":
                 driver.findElement(displayResolution).click();
                 break;
         }
@@ -73,11 +73,11 @@ public class TelevisionPage extends BasePage {
         List<WebElement> productsPrices = driver.findElements(By.xpath(productPriceLocator));
         for (WebElement element : productsPrices) {
             Double price = Double.parseDouble(element.getText().replaceAll(" р.","").replace(',','.'));
-            if(price <= Double.parseDouble(filterValue)){
-                return false;
+            if(!(price <= Double.parseDouble(filterValue))){
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public boolean isEachProductDescriptionContainsFilterValue(String filterValue){
