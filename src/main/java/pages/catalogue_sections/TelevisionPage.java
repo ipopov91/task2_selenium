@@ -72,12 +72,13 @@ public class TelevisionPage extends BasePage {
     public boolean isEachProductPriceMatchesFilterValue(String filterValue) {
         List<WebElement> productsPrices = driver.findElements(By.xpath(productPriceLocator));
         for (WebElement element : productsPrices) {
-            Double price = Double.parseDouble(element.getText().replaceAll(" р.","").replace(',','.'));
-            if(!(price <= Double.parseDouble(filterValue))){
-                return false;
+            String value = element.getText();
+            int price = Integer.parseInt(value.substring(0, value.indexOf(",")));
+            if(price <= Integer.parseInt(filterValue)){
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public boolean isEachProductDescriptionContainsFilterValue(String filterValue){
