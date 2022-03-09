@@ -74,10 +74,10 @@ public class TelevisionPage extends BasePage {
         for (WebElement element : productsPrices) {
             Double price = Double.parseDouble(element.getText().replaceAll(" р.","").replace(',','.'));
             if(!(price <= Double.parseDouble(filterValue))){
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     public boolean isEachProductDescriptionContainsFilterValue(String filterValue){
