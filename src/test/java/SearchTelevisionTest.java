@@ -24,8 +24,9 @@ public class SearchTelevisionTest extends BaseTest {
 
         TelevisionPage.chooseManufacturer(manufacturer);
         TelevisionPage.choosePriceTo(priceTo);
-        TelevisionPage.chooseResolution(resolution);
         TelevisionPage.chooseDiagonalFrom(diagonalFrom);
         TelevisionPage.chooseDiagonalTo(diagonalTo);
+        TelevisionPage.chooseResolution(resolution);
+        //televisionPage.checkResultSearch();
     }
 }

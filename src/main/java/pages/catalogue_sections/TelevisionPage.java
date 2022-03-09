@@ -2,6 +2,7 @@ package pages.catalogue_sections;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pages.base.BasePage;
 
 public class TelevisionPage extends BasePage {
@@ -11,6 +12,7 @@ public class TelevisionPage extends BasePage {
     private static final By optionDiagonalFrom = By.xpath("//div[@class = 'schema-filter__label']/span[contains(text(), 'Диагональ')]/../following-sibling::div//select[contains(@data-bind, 'value: facet.value.from')]//option[contains(@value, '400')]");
     private static final By optionDiagonalTo = By.xpath("//div[@class = 'schema-filter__label']/span[contains(text(), 'Диагональ')]/../following-sibling::div//select[contains(@data-bind, 'value: facet.value.to')]//option[contains(@value, '500')]");
     private static final By displayResolution = By.xpath("//span[@class='schema-filter__checkbox-text' and contains(text(), '1920')]");
+    private final By listTV = By.xpath("//div[@class='schema-product']");
 
     public TelevisionPage(WebDriver driver) {
         super(driver);
@@ -50,5 +52,11 @@ public class TelevisionPage extends BasePage {
                 driver.findElement(optionDiagonalTo).click();
                 break;
         }
+    }
+
+    public TelevisionPage checkResultSearch() {
+        int count = driver.findElements(listTV).size();
+        Assert.assertEquals(count, 1);
+        return this;
     }
 }
