@@ -3,7 +3,7 @@
 <suite name="MySuite">
     <parameter name="manufacturer" value="Samsung"/>
     <parameter name="priceTo" value="1500"/>
-    <parameter name="resolution" value="1920х1080 (Full HD)"/>
+    <parameter name="resolution" value="1920x1080 (Full HD)"/>
     <parameter name="diagonalFrom" value="40"/>
     <parameter name="diagonalTo" value="50"/>
     <test name="UITests">

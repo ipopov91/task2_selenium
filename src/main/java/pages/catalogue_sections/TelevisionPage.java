@@ -2,8 +2,10 @@ package pages.catalogue_sections;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+import org.openqa.selenium.WebElement;
 import pages.base.BasePage;
+
+import java.util.List;
 
 public class TelevisionPage extends BasePage {
 
@@ -12,7 +14,10 @@ public class TelevisionPage extends BasePage {
     private static final By optionDiagonalFrom = By.xpath("//div[@class = 'schema-filter__label']/span[contains(text(), 'Диагональ')]/../following-sibling::div//select[contains(@data-bind, 'value: facet.value.from')]//option[contains(@value, '400')]");
     private static final By optionDiagonalTo = By.xpath("//div[@class = 'schema-filter__label']/span[contains(text(), 'Диагональ')]/../following-sibling::div//select[contains(@data-bind, 'value: facet.value.to')]//option[contains(@value, '500')]");
     private static final By displayResolution = By.xpath("//span[@class='schema-filter__checkbox-text' and contains(text(), '1920')]");
-    private final By listTV = By.xpath("//div[@class='schema-product']");
+
+    private final String productPriceLocator = "//div[@class='schema-product__price']/a/span";
+    private final String productTitleLocator = "//div[@class='schema-product__title']";
+    private final String productDescriptionLocator = "//div[@class='schema-product__description']";
 
     public TelevisionPage(WebDriver driver) {
         super(driver);
@@ -54,9 +59,45 @@ public class TelevisionPage extends BasePage {
         }
     }
 
-    public TelevisionPage checkResultSearch() {
-        int count = driver.findElements(listTV).size();
-        Assert.assertEquals(count, 1);
-        return this;
+    public boolean isEachProductTitleContainsFilterValue(String filterValue) {
+        List<WebElement> productsTitles = driver.findElements(By.xpath(productTitleLocator));
+        for (WebElement element : productsTitles) {
+            if(element.getText().contains(filterValue)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isEachProductPriceMatchesFilterValue(String filterValue) {
+        List<WebElement> productsPrices = driver.findElements(By.xpath(productPriceLocator));
+        for (WebElement element : productsPrices) {
+            Double price = Double.parseDouble(element.getText().replaceAll(" р.","").replace(',','.'));
+            if(price <= Double.parseDouble(filterValue)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isEachProductDescriptionContainsFilterValue(String filterValue){
+        List<WebElement> productsDescriptions = driver.findElements(By.xpath(productDescriptionLocator));
+        for (WebElement element : productsDescriptions) {
+            if(element.getText().contains(filterValue)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isEachProductDescriptionContainsFilterValueInRange(String filterValueStartRange, String filterValueEndRange){
+        List<WebElement> productsDescriptions = driver.findElements(By.xpath(productDescriptionLocator));
+        for (WebElement element : productsDescriptions) {
+            Double diagonal = Double.parseDouble(element.getText().substring(0, 2));
+            if(diagonal >= Double.parseDouble(filterValueStartRange) && diagonal <= Double.parseDouble(filterValueEndRange)){
+                return true;
+            }
+        }
+        return false;
     }
 }
