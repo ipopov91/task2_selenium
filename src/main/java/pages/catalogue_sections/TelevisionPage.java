@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import pages.base.BasePage;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class TelevisionPage extends BasePage {
 
@@ -52,6 +53,7 @@ public class TelevisionPage extends BasePage {
     }
 
     public static void chooseDiagonalTo(String diagonalTo) {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         switch (diagonalTo) {
             case "50":
                 driver.findElement(optionDiagonalTo).click();
@@ -74,7 +76,7 @@ public class TelevisionPage extends BasePage {
         for (WebElement element : productsPrices) {
             String value = element.getText();
             int price = Integer.parseInt(value.substring(0, value.indexOf(",")));
-            if(price <= Integer.parseInt(filterValue)){
+            if(!(price <= Integer.parseInt(filterValue))){
                 return true;
             }
         }
