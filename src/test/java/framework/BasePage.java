@@ -30,7 +30,4 @@ public class BasePage {
         assert driver.findElement(pageLocator).isDisplayed();
     }
 
-    public String getPageTitle() {
-        return driver.getTitle();
-    }
 }

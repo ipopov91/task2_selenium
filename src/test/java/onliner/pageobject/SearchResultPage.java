@@ -31,11 +31,11 @@ public class SearchResultPage extends TelevisionPage {
         for (WebElement element : productsPrices) {
             String value = element.getText();
             int price = Integer.parseInt(value.substring(0, value.indexOf(",")));
-            if(!(price <= Integer.parseInt(filterValue))){
-                return true;
+            if(price <= Integer.parseInt(filterValue)){
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     public boolean isEachProductDescriptionContainsFilterValue(String filterValue){

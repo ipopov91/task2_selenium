@@ -17,10 +17,6 @@ public class MainPage extends BasePage {
         super(By.className(pageLocator));
     }
 
-    public MainPage(final By locator) {
-        super(locator);
-    }
-
     public MainPage(WebDriver driver) {
         super(driver);
     }

@@ -2,56 +2,43 @@ package onliner.pageobject;
 
 import framework.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-
-import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TelevisionPage extends BasePage {
 
-    private static final By samsungManufacturerBtn = By.xpath("//span[contains(text(), 'Производитель')]/../following-sibling::div/ul/li/label/span[@class='i-checkbox']/input[@value='samsung']/..");
-    private static final By priceBeforeField = By.xpath("//input[ @placeholder='до']");
-    private static final By optionDiagonalFrom = By.xpath("//div[@class = 'schema-filter__label']/span[contains(text(), 'Диагональ')]/../following-sibling::div//select[contains(@data-bind, 'value: facet.value.from')]//option[contains(@value, '400')]");
-    private static final By optionDiagonalTo = By.xpath("//div[@class = 'schema-filter__label']/span[contains(text(), 'Диагональ')]/../following-sibling::div//select[contains(@data-bind, 'value: facet.value.to')]//option[contains(@value, '500')]");
-    private static final By displayResolution = By.xpath("//span[@class='schema-filter__checkbox-text' and contains(text(), '1920')]");
+    private int waitTime = 10;
+
+    private final String checkboxLocator = "//div[@class='schema-filter__label'][contains(.,'%s')]/following-sibling::div//span[contains(text(),'%s')]";
+    private final String inputLocator = "//div[@class='schema-filter__label'][contains(.,'%s')]/following-sibling::div//input[@placeholder='%s']";
+    private final String buttonLocator = "//div[@class='schema-filter-button__inner-container']";
+
+    private WebElement webElement;
 
     public TelevisionPage(WebDriver driver) {
         super(driver);
     }
 
-    public static void chooseManufacturer(String manufacturer) {
-        switch (manufacturer) {
-            case "Samsung":
-                driver.findElement(samsungManufacturerBtn).click();
-                break;
-        }
+    public TelevisionPage checkboxSelector(String type,String value) {
+        webElement = driver.findElement(By.xpath(String.format(checkboxLocator, type, value)));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();",webElement);
+        WebDriverWait wait = new WebDriverWait(driver, waitTime);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(buttonLocator)));
+        webElement.click();
+        return this;
     }
 
-    public static void choosePriceTo(String priceTo) {
-        driver.findElement(priceBeforeField).sendKeys(priceTo);
-    }
-
-    public static void chooseResolution(String resolution) {
-        switch (resolution) {
-            case "1920x1080 (Full HD)":
-                driver.findElement(displayResolution).click();
-                break;
-        }
-    }
-
-    public static void chooseDiagonalFrom(String diagonalFrom) {
-        switch (diagonalFrom) {
-            case "40":
-                driver.findElement(optionDiagonalFrom).click();
-                break;
-        }
-    }
-
-    public static void chooseDiagonalTo(String diagonalTo) {
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        switch (diagonalTo) {
-            case "50":
-                driver.findElement(optionDiagonalTo).click();
-                break;
-        }
+    public TelevisionPage choosePriceTo(String type, String value, String inputValue) {
+        webElement = driver.findElement(By.xpath(String.format(inputLocator, type, value)));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();",webElement);
+        WebDriverWait wait = new WebDriverWait(driver, waitTime);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(buttonLocator)));
+        webElement.sendKeys(inputValue);
+        return this;
     }
 }
