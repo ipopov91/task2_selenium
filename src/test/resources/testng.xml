@@ -8,7 +8,7 @@
     <parameter name="diagonalTo" value="50"/>
     <test name="UITests">
         <classes>
-            <class name="SearchTelevisionTest"/>
+            <class name="onliner.tests.SearchTelevisionTest"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->
