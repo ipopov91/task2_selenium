@@ -15,10 +15,10 @@ public class BaseTest {
     public static final Boolean HOLD_BROWSER_OPEN = true;
 
     protected WebDriver driver = BrowserFactory.createDriver();
-    protected BasePage basePage = new BasePage(driver);
 
     @BeforeTest
     public void setUp() {
+        BasePage basePage = new BasePage(driver);
         basePage.open(PropertyManager.getProperty("homepage"));
     }
 
