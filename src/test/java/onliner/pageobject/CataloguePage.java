@@ -11,11 +11,16 @@ public class CataloguePage extends BasePage {
     private final String electronicsBtn = "//span[@class='catalog-navigation-classifier__item-title'][contains(.,'%s')]";
     private final String televisionsAndVideoBtn = "//div[@class='catalog-navigation-list__aside-item'][contains(.,'%s')]";
     private final String televisionsBtn = "//a[@class='catalog-navigation-list__dropdown-item'][contains(.,'%s')]";
+    private String cataloguePageTitle = "Каталог Onl?ner";
 
     private WebElement webElement;
 
     public CataloguePage(WebDriver driver) {
         super(driver);
+    }
+
+    public String getCataloguePageTitle(){
+        return cataloguePageTitle;
     }
 
     public CataloguePage navigateMenu(String selectedCatalogNavigationItem) {

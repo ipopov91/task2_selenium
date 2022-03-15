@@ -23,25 +23,25 @@ public class SearchTelevisionTest extends BaseTest {
     @Parameters({"manufacturer", "priceTo", "resolution", "diagonalFrom", "diagonalTo"})
     @Test
     public void checkIsRedirectToList(String manufacturer, String priceTo, String resolution, String diagonalFrom, String diagonalTo) {
-
+        SoftAssert softAssert = new SoftAssert();
         MainPage mainPage = new MainPage(driver);
 
-
+        softAssert.assertEquals(driver.getTitle(), mainPage.getMainPageTitle());
         mainPage.navigateSection("Каталог");
 
+        softAssert.assertEquals(driver.getTitle(), cataloguePage.getCataloguePageTitle());
         cataloguePage
                 .navigateMenu("Электроника")
                 .navigateSubMenu("Телевидение")
                 .navigateTelevisionList("Телевизоры");
 
+        softAssert.assertTrue(driver.findElement(televisionPage.getTvPageTitleLocator()).isDisplayed());
         televisionPage
                 .checkboxSelector( "Производитель", manufacturer)
                 .choosePriceTo("цена", "до",priceTo)
                 .checkboxSelector("Разрешение", resolution)
                 .checkboxSelector("Диагональ" ,diagonalFrom)
                 .checkboxSelector("Диагональ" ,diagonalTo);
-
-        SoftAssert softAssert = new SoftAssert();
 
         softAssert.assertTrue(searchResultPage.isEachProductTitleContainsFilterValue(manufacturer),
                 String.format(ERROR_MSG_TITLE_NOT_MATCH,manufacturer));

@@ -15,11 +15,16 @@ public class TelevisionPage extends BasePage {
     private final String checkboxLocator = "//div[@class='schema-filter__label'][contains(.,'%s')]/following-sibling::div//span[contains(text(),'%s')]";
     private final String inputLocator = "//div[@class='schema-filter__label'][contains(.,'%s')]/following-sibling::div//input[@placeholder='%s']";
     private final String buttonLocator = "//div[@class='schema-filter-button__inner-container']";
+    private final By televisionPageTitleLocator = By.xpath("//h1[contains(text(), 'Телевизоры')]");
 
     private WebElement webElement;
 
     public TelevisionPage(WebDriver driver) {
         super(driver);
+    }
+
+    public By getTvPageTitleLocator() {
+        return televisionPageTitleLocator;
     }
 
     public TelevisionPage checkboxSelector(String type,String value) {

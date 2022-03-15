@@ -6,10 +6,12 @@ import java.util.Properties;
 public class PropertyManager {
     protected static FileInputStream fileInputStream;
     protected static Properties PROPERTIES;
+    static final String PROPERTIES_FILE_PATH = "src/test/resources/conf.properties";
+
     static {
         try {
             //specifying the path to the properties file
-            fileInputStream = new FileInputStream("src/test/resources/conf.properties");
+            fileInputStream = new FileInputStream(PROPERTIES_FILE_PATH);
             PROPERTIES = new Properties();
             PROPERTIES.load(fileInputStream);
         } catch (IOException e) {

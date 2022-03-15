@@ -25,6 +25,4 @@ public class BrowserFactory {
         driver.manage().timeouts().implicitlyWait(Integer.parseInt(PropertyManager.getProperty("implicitWait")), TimeUnit.SECONDS);
         return driver;
     }
-
-
 }
