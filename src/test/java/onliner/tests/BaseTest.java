@@ -9,17 +9,22 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
+import java.util.concurrent.TimeUnit;
+
 public class BaseTest {
 
     public static final Boolean CLEAR_COOKIES_AND_STORAGE = true;
     public static final Boolean HOLD_BROWSER_OPEN = true;
+    private final static String URL = PropertyManager.getProperty("homepage");
 
-    protected WebDriver driver = BrowserFactory.createDriver();
+    protected WebDriver driver;
 
     @BeforeTest
     public void setUp() {
-        BasePage basePage = new BasePage(driver);
-        basePage.open(PropertyManager.getProperty("homepage"));
+        driver = BrowserFactory.createDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+        driver.get(URL);
     }
 
     @AfterTest
